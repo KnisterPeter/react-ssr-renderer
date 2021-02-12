@@ -6,8 +6,12 @@ declare function fakePromiseFactory(NativePromise: typeof Promise): {
     new (task: () => unknown): {};
     /** @type {Promise<unknown>[]} */
     activePromises: Promise<unknown>[];
-    resolve: {
-        (): Promise<void>;
-        <T>(value: T | PromiseLike<T>): Promise<T>;
-    };
+    /**
+     * @param {unknown} value
+     */
+    resolve(value: unknown): Promise<unknown>;
+    /**
+     * @param {unknown} value
+     */
+    reject(value: unknown): Promise<never>;
 };

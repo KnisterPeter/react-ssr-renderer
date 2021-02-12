@@ -7,31 +7,19 @@ export type JSDOM = import("jsdom").JSDOM;
  */
 export class BrowserModule extends ContextModule {
     /**
-     * @param {string} code
-     * @param {string} filename
+     * @param {Object} options
+     * @param {import('jsdom').JSDOM=} options.dom
+     * @param {string} options.code
+     * @param {string} options.filename
      */
-    constructor(code: string, filename: string);
-    _globals: {
-        process: {
-            env: {};
-            nextTick: (callback: Function, ...args: any[]) => void;
-        };
-        console: Console;
-        Buffer: typeof Buffer;
-        Error: ErrorConstructor;
-        setTimeout: typeof setTimeout;
-        clearTimeout: typeof clearTimeout;
-        setInterval: typeof setInterval;
-        clearInterval: typeof clearInterval;
-        fetch(): never;
-        Promise: any;
-    };
-    /**
-     * @private
-     */
-    private _createGlobalDOM;
-    /** @type {JSDOM} */
-    dom: import("jsdom").JSDOM | undefined;
-    render(): Promise<string | undefined>;
+    constructor({ dom, code, filename }: {
+        dom?: import('jsdom').JSDOM | undefined;
+        code: string;
+        filename: string;
+    });
+    Promise: any;
+    fetch: any;
+    dom: import("jsdom").JSDOM;
+    render(): Promise<string>;
 }
 import { ContextModule } from "./context-module";

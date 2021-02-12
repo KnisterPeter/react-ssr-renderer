@@ -23,7 +23,7 @@ export class ContextModule {
      * @param {string} id
      * @param {string} basedir
      */
-    protected _internalRequire(id: string, basedir: string): unknown;
+    protected _internalRequire(id: string, basedir: string): any;
     /**
      * @public
      * @return {unknown}
