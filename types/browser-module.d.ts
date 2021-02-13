@@ -19,10 +19,35 @@ export class BrowserModule extends ContextModule {
         code: string;
         filename: string;
     });
-    Promise: any;
+    Promise: {
+        new (task: () => unknown): {};
+        activePromises: Promise<unknown>[];
+        retrieveAndClearActivePromises(): Promise<unknown>[];
+        wrap(p: Promise<any>): {
+            then(...args: any[]): any;
+            catch(...args: any[]): any;
+            finally(...args: any[]): any;
+        };
+        resolve(value: unknown): {
+            then(...args: any[]): any;
+            catch(...args: any[]): any;
+            finally(...args: any[]): any;
+        };
+        reject(value: unknown): {
+            then(...args: any[]): any;
+            catch(...args: any[]): any;
+            finally(...args: any[]): any;
+        };
+        all(promises: Promise<any>[]): {
+            then(...args: any[]): any;
+            catch(...args: any[]): any;
+            finally(...args: any[]): any;
+        };
+    };
     fetch: any;
     dom: import("jsdom").JSDOM;
     globals: Record<string, unknown>;
+    _getActivePromisesAfterEventLoop(): Promise<Promise<unknown>[]>;
     render(): Promise<string>;
 }
 import { ContextModule } from "./context-module";
