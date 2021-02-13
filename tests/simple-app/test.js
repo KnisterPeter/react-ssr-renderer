@@ -1,14 +1,9 @@
-const { JSDOM } = require("jsdom");
-
-const { renderFile } = require("../..");
+const { render } = require("../test-helper");
 
 test("Render simple app (e.g. without data fetching)", async () => {
-  const html = await renderFile({
-    filename: require.resolve("./app.js"),
-  });
+  const {
+    window: { document },
+  } = await render({ file: require.resolve("./app.jsx") });
 
-  const dom = new JSDOM(html);
-  expect(dom.window.document.querySelector("div").innerHTML).toBe(
-    "Hello World"
-  );
+  expect(document.querySelector("div")).toHaveTextContent("Hello World");
 });

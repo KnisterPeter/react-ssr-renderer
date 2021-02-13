@@ -1,17 +1,16 @@
-const { JSDOM } = require("jsdom");
-
-const { renderFile } = require("../..");
+const { render } = require("../test-helper");
 
 test("Render app with given external global data", async () => {
-  const html = await renderFile({
+  const {
+    window: { document },
+  } = await render({
+    file: require.resolve("./app.jsx"),
     globals: {
       message: "Hello global world!",
     },
-    filename: require.resolve("./app.js"),
   });
 
-  const dom = new JSDOM(html);
-  expect(dom.window.document.querySelector("div").innerHTML).toBe(
+  expect(document.querySelector("div")).toHaveTextContent(
     "Hello global world!"
   );
 });
