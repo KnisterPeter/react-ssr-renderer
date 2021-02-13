@@ -1,15 +1,13 @@
 const { JSDOM } = require("jsdom");
-
-const { renderFile } = require("../..");
+const { render } = require("../test-helper");
 
 test("Render app in a custom prepared DOM", async () => {
-  const html = await renderFile({
+  const {
+    window: { document },
+  } = await render({
+    file: require.resolve("./app.jsx"),
     dom: new JSDOM('<body><div id="app"></div></body>'),
-    filename: require.resolve("./app.js"),
   });
 
-  const dom = new JSDOM(html);
-  expect(dom.window.document.querySelector("#app").innerHTML).toBe(
-    "Hello World"
-  );
+  expect(document.querySelector("#app")).toHaveTextContent("Hello World");
 });

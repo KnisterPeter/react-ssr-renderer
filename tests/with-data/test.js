@@ -1,12 +1,16 @@
-const { JSDOM } = require("jsdom");
-
-const { renderFile } = require("../..");
+const { render } = require("../test-helper");
 
 test("Render app with react-query", async () => {
-  const html = await renderFile({
-    filename: require.resolve("./app.js"),
+  const {
+    window: { document },
+  } = await render({
+    file: require.resolve("./app.jsx"),
   });
 
-  const dom = new JSDOM(html);
-  expect(dom.window.document.querySelector("h1").innerHTML).toBe("react-query");
+  const h1 = document.querySelector("h1");
+  const strong = document.querySelectorAll("strong");
+
+  expect(h1).toHaveTextContent("react-query");
+  expect(strong).toHaveLength(3);
+  expect(strong[2]).toHaveTextContent(/🍴 \d+/);
 });
