@@ -3,11 +3,7 @@
 
 name: Node.js CI
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -24,6 +20,13 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - name: npm install
+      run: npm ci
+    - name: Run type check
+      run: npm run build --if-present
+    - name: Run tests
+      run: npm test
+    - name: Ensure unmodified workspace
+      # This fails if the git workspaces has modifications
+      # (e.g. if the type-check creates/changes typings)
+      run: '[[ $(git status --porcelain |wc -l) -eq 0 ]]'
