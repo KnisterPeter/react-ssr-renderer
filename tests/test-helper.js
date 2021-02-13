@@ -7,19 +7,23 @@ const { render: serverRender } = require("..");
 
 /**
  * @param {object} options
- * @param {string} options.file
+ * @param {string=} options.code
+ * @param {string=} options.file
  * @param {JSDOM=} options.dom
  * @param {Record<string, unknown>=} options.globals
  * @returns {Promise<JSDOM>}
  */
-async function render({ file, dom, globals }) {
-  const compiled = await transformFileAsync(file, {
-    presets: ["@babel/preset-react"],
-    plugins: ["@babel/plugin-transform-modules-commonjs"],
-  });
+async function render({ code, file, dom, globals }) {
+  if (!code) {
+    const compiled = await transformFileAsync(file, {
+      presets: ["@babel/preset-react"],
+      plugins: ["@babel/plugin-transform-modules-commonjs"],
+    });
+    code = compiled.code;
+  }
 
   const html = await serverRender({
-    code: compiled.code,
+    code,
     filename: `${file}.babel.js`,
     dom,
     globals,
