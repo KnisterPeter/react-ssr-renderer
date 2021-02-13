@@ -33,6 +33,12 @@
     "node-fetch": "2.6.1",
     "resolve": "1.20.0"
   },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "lib/**"
+    ]
+  },
   "prettier": {},
   "renovate": {
     "extends": [
