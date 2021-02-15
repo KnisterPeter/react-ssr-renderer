@@ -70,7 +70,25 @@ class TestResourceLoader extends ResourceLoader {
   }
 }
 
+/**
+ * @param {import('memfs').IFs} fs
+ * @param {string} host
+ */
+function resourceLoader(fs, host) {
+  /**
+   * @param {string} url
+   */
+  const fn = async (url) => {
+    if (url.startsWith(host)) {
+      return fs.readFileSync(url.substr(host.length));
+    }
+    throw new Error(`Unexpected request to '${url}`);
+  };
+  return fn;
+}
+
 module.exports = {
   runWebpack,
   TestResourceLoader,
+  resourceLoader,
 };
