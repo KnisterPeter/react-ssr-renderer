@@ -39,20 +39,20 @@ export class Renderer {
     private _set;
     /**
      * @private
-     * @param {Window} window
-     * @param {Window['fetch']} externalFetch
+     * @param {import('jsdom').JSDOM['window']} window
+     * @param {import('jsdom').JSDOM['window']['fetch']=} externalFetch
      */
     private _setupFetch;
     /**
      * @private
-     * @param {Window} window
+     * @param {import('jsdom').JSDOM['window']} window
      */
     private _setupPromiseTracker;
     /**
-     * @param {Window} window
-     * @param {Window['fetch']} externalFetch
+     * @param {import('jsdom').JSDOM['window']} window
+     * @param {import('jsdom').JSDOM['window']['fetch']=} externalFetch
      */
-    setup(window: Window, externalFetch: Window['fetch']): void;
+    setup(window: import('jsdom').JSDOM['window'], externalFetch?: import('jsdom').JSDOM['window']['fetch'] | undefined): void;
     _getActivePromisesAfterEventLoop(): Promise<Promise<unknown>[]>;
     render(): Promise<void>;
 }
