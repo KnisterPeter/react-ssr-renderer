@@ -1,8 +1,7 @@
-export = fakePromiseFactory;
 /**
  * @param {typeof Promise} NativePromise
  */
-declare function fakePromiseFactory(NativePromise: typeof Promise): {
+export function promiseTrackerFactory(NativePromise: typeof Promise): {
     new (task: () => unknown): {};
     /** @type {Promise<unknown>[]} */
     activePromises: Promise<unknown>[];

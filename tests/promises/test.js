@@ -1,92 +1,92 @@
-const fakePromiseFactory = require("../../lib/fake-promise");
+const { promiseTrackerFactory } = require("../../lib/promise-tracker");
 
-test("FakePromise should wrap new Promise", async () => {
-  const WrappedPromise = fakePromiseFactory(Promise);
+test("PromiseTracker should wrap new Promise", async () => {
+  const PromiseTracker = promiseTrackerFactory(Promise);
 
-  new WrappedPromise((resolve) => resolve());
+  new PromiseTracker((resolve) => resolve());
 
-  const active = WrappedPromise.retrieveAndClearActivePromises();
+  const active = PromiseTracker.retrieveAndClearActivePromises();
   expect(active).toHaveLength(1);
 
   await Promise.all(active);
 });
 
-test("FakePromise should wrap next then-ed promise", async () => {
-  const WrappedPromise = fakePromiseFactory(Promise);
+test("PromiseTracker should wrap next then-ed promise", async () => {
+  const PromiseTracker = promiseTrackerFactory(Promise);
 
-  new WrappedPromise((resolve) => resolve()).then(() => {});
+  new PromiseTracker((resolve) => resolve()).then(() => {});
 
-  const active = WrappedPromise.retrieveAndClearActivePromises();
+  const active = PromiseTracker.retrieveAndClearActivePromises();
   expect(active).toHaveLength(2);
 
   await Promise.all(active);
 });
 
-test("FakePromise should wrap next catch-ed promise", async () => {
-  const WrappedPromise = fakePromiseFactory(Promise);
+test("PromiseTracker should wrap next catch-ed promise", async () => {
+  const PromiseTracker = promiseTrackerFactory(Promise);
 
-  new WrappedPromise((resolve) => resolve())
+  new PromiseTracker((resolve) => resolve())
     .then(() => {
       throw new Error();
     })
     .catch(() => {});
 
-  const active = WrappedPromise.retrieveAndClearActivePromises();
+  const active = PromiseTracker.retrieveAndClearActivePromises();
   expect(active).toHaveLength(3);
 
   expect(Promise.all(active)).rejects.toThrow();
 });
 
-test("FakePromise should wrap Promise.all", async () => {
-  const WrappedPromise = fakePromiseFactory(Promise);
+test("PromiseTracker should wrap Promise.all", async () => {
+  const PromiseTracker = promiseTrackerFactory(Promise);
 
-  WrappedPromise.all([
-    new WrappedPromise((resolve) => {
+  PromiseTracker.all([
+    new PromiseTracker((resolve) => {
       setTimeout(resolve, 100);
     }),
-    new WrappedPromise((resolve) => resolve()),
+    new PromiseTracker((resolve) => resolve()),
   ])
     .then(() => {
-      return new WrappedPromise((resolve) => {
+      return new PromiseTracker((resolve) => {
         setTimeout(resolve, 100);
       });
     })
     .then(() => 123);
 
-  const active = WrappedPromise.retrieveAndClearActivePromises();
+  const active = PromiseTracker.retrieveAndClearActivePromises();
   expect(active).toHaveLength(5);
 
   await Promise.all(active);
 });
 
-test("FakePromise should wrap Promise.resolve", async () => {
-  const WrappedPromise = fakePromiseFactory(Promise);
+test("PromiseTracker should wrap Promise.resolve", async () => {
+  const PromiseTracker = promiseTrackerFactory(Promise);
 
-  WrappedPromise.resolve();
+  PromiseTracker.resolve();
 
-  const active = WrappedPromise.retrieveAndClearActivePromises();
+  const active = PromiseTracker.retrieveAndClearActivePromises();
   expect(active).toHaveLength(1);
 
   await Promise.all(active);
 });
 
-test("FakePromise should wrap Promise.reject", async () => {
-  const WrappedPromise = fakePromiseFactory(Promise);
+test("PromiseTracker should wrap Promise.reject", async () => {
+  const PromiseTracker = promiseTrackerFactory(Promise);
 
-  WrappedPromise.reject(1);
+  PromiseTracker.reject(1);
 
-  const active = WrappedPromise.retrieveAndClearActivePromises();
+  const active = PromiseTracker.retrieveAndClearActivePromises();
   expect(active).toHaveLength(1);
 
   expect(Promise.all(active)).rejects.toBe(1);
 });
 
-test("FakePromise should wrap Promise.finally", async () => {
-  const WrappedPromise = fakePromiseFactory(Promise);
+test("PromiseTracker should wrap Promise.finally", async () => {
+  const PromiseTracker = promiseTrackerFactory(Promise);
 
-  WrappedPromise.resolve().finally();
+  PromiseTracker.resolve().finally();
 
-  const active = WrappedPromise.retrieveAndClearActivePromises();
+  const active = PromiseTracker.retrieveAndClearActivePromises();
   expect(active).toHaveLength(2);
 
   await Promise.all(active);
