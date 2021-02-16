@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "release": "shipjs prepare"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-query": "3.9.6",
+    "shipjs": "0.23.0",
     "typescript": "4.1.5",
     "webpack": "5.22.0"
   },
@@ -39,34 +41,23 @@
   },
   "jest": {
     "collectCoverage": true,
-    "collectCoverageFrom": [
-      "lib/**"
-    ]
+    "collectCoverageFrom": ["lib/**"]
   },
   "prettier": {},
   "renovate": {
-    "extends": [
-      "config:base"
-    ],
+    "extends": ["config:base"],
     "lockFileMaintenance": {
       "enabled": true,
       "automerge": true
     },
     "packageRules": [
       {
-        "depTypeList": [
-          "devDependencies"
-        ],
-        "updateTypes": [
-          "minor",
-          "patch"
-        ],
+        "depTypeList": ["devDependencies"],
+        "updateTypes": ["minor", "patch"],
         "automerge": true
       },
       {
-        "packagePatterns": [
-          "^@types/"
-        ],
+        "packagePatterns": ["^@types/"],
         "automerge": true
       }
     ]
