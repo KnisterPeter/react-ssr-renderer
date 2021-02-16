@@ -41,23 +41,34 @@
   },
   "jest": {
     "collectCoverage": true,
-    "collectCoverageFrom": ["lib/**"]
+    "collectCoverageFrom": [
+      "lib/**"
+    ]
   },
   "prettier": {},
   "renovate": {
-    "extends": ["config:base"],
+    "extends": [
+      "config:base"
+    ],
     "lockFileMaintenance": {
       "enabled": true,
       "automerge": true
     },
     "packageRules": [
       {
-        "depTypeList": ["devDependencies"],
-        "updateTypes": ["minor", "patch"],
+        "depTypeList": [
+          "devDependencies"
+        ],
+        "updateTypes": [
+          "minor",
+          "patch"
+        ],
         "automerge": true
       },
       {
-        "packagePatterns": ["^@types/"],
+        "packagePatterns": [
+          "^@types/"
+        ],
         "automerge": true
       }
     ]
