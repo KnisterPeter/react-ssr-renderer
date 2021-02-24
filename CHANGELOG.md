@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/KnisterPeter/react-ssr-renderer/compare/v1.0.0...v1.1.0) (2021-02-24)
+
+
+### Features
+
+* allow to provide custom fetch function ([f2a399f](https://github.com/KnisterPeter/react-ssr-renderer/commit/f2a399f3e6271d96886659128e9d82098f7d88dc))
+
+
+
 # 1.0.0 (2021-02-16)
 
 
