@@ -1,4 +1,4 @@
-/// <reference types="jsdom/ts3.4" />
+/// <reference types="jsdom/ts3.5" />
 export type DOMResourceLoader = import('jsdom').ResourceLoader;
 export type DOMWinnow = import('jsdom').JSDOM['window'];
 export type FetchOptions = import('jsdom').FetchOptions;
