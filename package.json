@@ -30,7 +30,7 @@
     "react-query": "3.13.10",
     "shipjs": "0.23.2",
     "typescript": "4.2.4",
-    "webpack": "5.33.2"
+    "webpack": "5.34.0"
   },
   "dependencies": {
     "cross-fetch": "3.1.4",
