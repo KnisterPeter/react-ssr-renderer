@@ -21,7 +21,7 @@
     "@types/react-dom": "17.0.9",
     "@types/resolve": "1.20.1",
     "babel-loader": "8.2.2",
-    "jest": "27.2.2",
+    "jest": "27.2.3",
     "jsdom": "17.0.0",
     "memfs": "3.3.0",
     "prettier": "2.4.1",
