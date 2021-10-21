@@ -20,7 +20,7 @@
     "@types/react": "17.0.30",
     "@types/react-dom": "17.0.10",
     "@types/resolve": "1.20.1",
-    "babel-loader": "8.2.2",
+    "babel-loader": "8.2.3",
     "jest": "27.3.1",
     "jsdom": "18.0.0",
     "memfs": "3.3.0",
