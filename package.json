@@ -13,7 +13,7 @@
   "devDependencies": {
     "@babel/preset-react": "7.16.0",
     "@testing-library/dom": "8.10.1",
-    "@testing-library/jest-dom": "5.14.1",
+    "@testing-library/jest-dom": "5.15.0",
     "@types/jest": "27.0.2",
     "@types/jsdom": "16.2.13",
     "@types/node": "16.11.6",
