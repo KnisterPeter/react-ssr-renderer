@@ -12,7 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-react": "7.16.0",
-    "@testing-library/dom": "8.11.0",
+    "@testing-library/dom": "8.11.1",
     "@testing-library/jest-dom": "5.15.0",
     "@types/jest": "27.0.2",
     "@types/jsdom": "16.2.13",
