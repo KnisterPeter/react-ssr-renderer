@@ -22,7 +22,7 @@
     "@types/resolve": "1.20.1",
     "babel-loader": "8.2.3",
     "jest": "27.3.1",
-    "jsdom": "18.0.1",
+    "jsdom": "18.1.0",
     "memfs": "3.3.0",
     "prettier": "2.4.1",
     "react": "17.0.2",
@@ -37,7 +37,7 @@
     "resolve": "1.20.0"
   },
   "peerDependencies": {
-    "jsdom": ">= 16.x < 18.1"
+    "jsdom": ">= 16.x < 18.2"
   },
   "jest": {
     "collectCoverage": true,
