@@ -14,7 +14,7 @@
     "@babel/preset-react": "7.16.0",
     "@testing-library/dom": "8.11.1",
     "@testing-library/jest-dom": "5.15.0",
-    "@types/jest": "27.0.2",
+    "@types/jest": "27.0.3",
     "@types/jsdom": "16.2.13",
     "@types/node": "16.11.7",
     "@types/react": "17.0.35",
