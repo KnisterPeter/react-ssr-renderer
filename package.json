@@ -18,7 +18,7 @@
     "@types/jsdom": "16.2.14",
     "@types/node": "16.11.26",
     "@types/react": "17.0.41",
-    "@types/react-dom": "17.0.13",
+    "@types/react-dom": "17.0.14",
     "@types/resolve": "1.20.1",
     "babel-loader": "8.2.3",
     "jest": "27.5.1",
