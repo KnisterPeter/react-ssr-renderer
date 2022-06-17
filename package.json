@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "cross-fetch": "3.1.5",
-    "resolve": "1.22.0"
+    "resolve": "1.22.1"
   },
   "peerDependencies": {
     "jsdom": ">= 16.x < 19.1"
